@@ -1,0 +1,86 @@
+走迷宫
+
+#include<stdio.h>
+#include<windows.h>   
+#include<conio.h>    
+#include<stdlib.h>
+
+
+char map[9][12] = {   
+"*#*********",
+"***###*###*",
+"###**#****#",
+"*#**###**#*",
+"***********",
+"#####*##*##",
+"**#*****#*E",
+"***#*###**#",
+"*#*********",
+};
+
+
+int curX =0, curY = 0;    
+void printPerson()
+{
+	COORD pos;     
+	pos.X = curX;
+	pos.Y = curY;
+	printf("curX=%d,curY=%d\n", curX, curY);
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+	
+}
+void printMap()
+{
+	int i, j;
+	for (i = 0; i < 9; i++)
+	{
+		for (j = 0; j < 12; j++)
+		{
+			printf("%c", map[i][j]);
+		}
+		printf("\n");
+	}
+}
+void Move(char	t)
+{
+	switch (t)
+	{
+	case 'w'://向上走 
+		curY--;
+		if (curY < 0) curY = 0;
+		if (map[curY][curX] == '#') curY++;
+		break;
+	case 's'://向下走
+		curY++;
+		if (curY >= 9) curY = 9 - 1;
+		if (map[curY][curX] == '#') curY--;
+		break;
+	case 'a'://向左走
+		curX--;
+		if (curX < 0) curX = 0;
+		if (map[curY][curX] == '#') curX++;
+		break;
+	case 'd'://向右走
+		curX++;
+		if (curX >= 11) curX = 11 -1;
+		if (map[curY][curX] == '#') curX--;
+		break;
+	}
+}
+void main()
+{
+	char t;
+	while (1)
+	{
+		system("cls");
+		printMap();
+		printPerson();
+		t = _getch();         
+		Move(t);
+		if (map[curY][curX] == 'E')
+		{
+			printf("恭喜玩家成功逃离荒岛！\n\n");
+			break;
+		}
+	}
+}
