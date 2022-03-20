@@ -1,20 +1,30 @@
 #include<stdio.h>
 #include<string.h>
 int main()
-{
-	char a[]=" ";
-	printf("请输入想要查询的英文句子:\n"); 
-	gets(a); 
-    int num=0;
-	char *pa,*pb;
-	for (int i = 0; i < strlen(a); i++)
 	{
-        pa=&a[i];
-	    pb=&a[i+1];  
-		if((*pa=='i'||*pa=='I')&&(*pb=='t'||*pb=='T'))
-		{
-			num=num+1;
-		}
-	}
-    printf("此句话it单词的个数为:%d\n",num); 
-}
+		char a[1000],b[20];
+		char *pa,*pb; 
+		int num=0,i,j;
+		printf("请输入想要查询的句子:\n");
+		gets(a);
+		printf("请输入想要查询的单词:\n");
+		gets(b);
+		strlwr(a);
+		strlwr(b);
+		
+		for(i=0;i<strlen(a);i++)
+			{
+				for(j=0;j<strlen(b);j++)
+					{
+					    pa=&a[i+j];
+						pb=&b[j];
+						if(*pa!=*pb)break;
+				    }
+					if(j==strlen(b))
+						{
+							num=num+1;
+					    } 
+				
+		    }
+			printf("你想要统计的单词个数为:%d\n",num); 
+        } 
