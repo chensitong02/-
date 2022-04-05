@@ -1,34 +1,35 @@
 #include<stdio.h> 
 int main()
-{
+    {
 		int n;//一共有n个考生 
 		scanf("%d",&n); 
 		int a[n],b[n];//分别存放试机座位号和考试座位号 
 		char c[n][17];//存放准考证号
 		for(int i=0;i<n;i++)
-			{
+		{
 				scanf("%s %d %d",&c[i],&a[i],&b[i]); 
-		  }
+		}
 		
 		int m;//一共有m个迟到的考生 
 		scanf("%d",&m);
 		int d[m];//存放迟到考生的试机座位号 
 		for(int i=0;i<m;i++)
-			{
+		{
 				scanf("%d",&d[i]); 
-		  }
+		}
  		
 		for(int i=0;i<m;i++)
-			{
-				int t;
-				for(int j=0;j<n;j++)
-					{
-						if(d[i]==a[j]) 
-							{
-								t=j;
-								break;
-						  }
-				  }
-					printf("%s %d\n",c[t],b[t]);
-		  } 
- } 
+		{
+			int t;
+			for(int j=0;j<n;j++)
+		        {
+				if(d[i]==a[j]) 
+				   {
+					t=j;
+					break;
+				   }
+		        }
+			printf("%s %d\n",c[t],b[t]);
+		} 
+		 
+    } 
