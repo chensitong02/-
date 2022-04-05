@@ -1,0 +1,66 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+	char a[30];
+	printf("请输入十以内的数值进行运算:\n"); 
+	gets(a);
+	for(int i=1;a[i]!='\0';i++)
+	{
+		if(a[i]=='*')
+		{
+			float x=(a[i-1]-'0')*(a[i+1]-'0');
+			a[i+1]=x+'0';
+			a[i-1]='0';
+			if(i==1)
+			{
+				a[i]='+';
+			}
+			else 
+			{
+			   if(a[i-2]=='+')
+			   {
+			   	 a[i]='+';
+			   }
+			   else if(a[i-2]=='-')
+			   {
+			   	 a[i]='-';
+			   }
+			}
+		}
+		else if(a[i]=='/')
+		{
+			float y=(a[i-1]-'0')/(a[i+1]-'0');
+			a[i+1]=y+'0';
+			a[i-1]='0';
+			if(i==1)
+			{
+				a[i]='+';
+			}	
+			else 
+			{
+			   if(a[i-2]=='+')
+			   {
+			   	 a[i]='+';
+			   }
+			   else if(a[i-2]=='-')
+			   {
+			   	 a[i]='-';
+			   }
+			}		
+		}
+	}
+	float s=a[0]-'0';
+	for(int i=1;a[i]!='\0';i++)
+	{
+		if(a[i]=='+')
+		{
+			s=s+(a[i+1]-'0');
+		}
+		else if(a[i]=='-')
+		{
+			s=s-(a[i+1]-'0');
+		}
+	}
+	printf("此公式的计算结果为:%f\n",s); 
+} 
