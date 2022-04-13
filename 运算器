@@ -1,0 +1,107 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+
+void movefh(char* pfh)
+{
+	while (*pfh != '\0')
+	{
+		*pfh = *(pfh + 1);
+		pfh++;
+	}
+}
+void movesz(float* psz, float* end)
+{
+	while (psz != end)
+	{
+		*psz = *(psz + 1);
+		psz++;
+	}
+}
+
+int main()
+{
+	char gs[100];
+	printf("请输入公式:\n");
+	gets(gs);
+	char fh[100] = { '\0' }; 
+	float sz[100];
+
+	int fhIndex = 0;
+	for (int i = 0; i < strlen(gs); i++)
+	{
+		if (gs[i] == '*' || gs[i] == '/' || gs[i] == '+' || gs[i] == '-')
+		{
+			fh[fhIndex++] = gs[i];
+		}
+	}
+
+	int szIndex = 0;
+	for (int i = 0; i < strlen(gs); i++)
+	{
+		char ygsz[100] = { '\0' };
+		int ygszIndex = 0;
+		while (gs[i] >= '0' && gs[i] <= '9' || gs[i] == '.')
+		{
+			ygsz[ygszIndex++] = gs[i++];
+		}
+		float xs = atof(ygsz);
+		sz[szIndex++] = xs;
+	}
+
+	char* pfh = fh;
+	float* psz = sz;
+	while (*pfh != '\0')
+	{
+		if (*pfh == '*')
+		{
+			float leftsz = *psz;
+			float rightsz = *(psz + 1);
+			float res = leftsz * rightsz;
+			*psz = res;
+			movefh(pfh);
+			movesz(psz + 1, &sz[szIndex--]);
+		}
+		else if (*pfh == '/')
+		{
+			float leftsz = *psz;
+			float rightsz = *(psz + 1);
+			float res = leftsz / rightsz;
+			*psz = res;
+			movefh(pfh);
+			movesz(psz + 1, &sz[szIndex--]);
+		}
+		else
+		{
+			pfh++;
+			psz++;
+		}
+	}
+
+	pfh = &fh[0];
+	psz = &sz[0];
+	while (*pfh != '\0')
+	{
+		if (*pfh == '+')
+		{
+			float leftsz = *psz;
+			float rightsz = *(psz + 1);
+			float res = leftsz + rightsz;
+			*psz = res;
+			movefh(pfh);
+			movesz(psz + 1, &sz[szIndex--]);
+		}
+		else if (*pfh == '-')
+		{
+			float leftsz = *psz;
+			float rightsz = *(psz + 1);
+			float res = leftsz - rightsz;
+			*psz = res;
+			movefh(pfh);
+			movesz(psz + 1, &sz[szIndex--]);
+		}
+		
+	}
+	printf("答案是：%0.2f\n", sz[0]);
+	return 0;
+}
