@@ -1,6 +1,6 @@
 #include<stdio.h>
 #include<string.h>
-#include<stdlib.h> 
+#include<malloc.h> 
 
 struct student
 {
@@ -8,14 +8,28 @@ struct student
 	int stuAge;
 	char stuName[100];
 	struct student *next;
-}*firstP=NULL,*endP=NULL;//定义头指针和未指针 
+}*firstP=NULL,*endP=NULL;
+
+void printStudent(struct student *curP)
+{
+	printf("学号:%d  年龄:%d  姓名:%s\n",curP->stuId,curP->stuAge,curP->stuName); 
+}
+
+void printAll(struct student *firstP)
+{
+	while(firstP!=NULL)
+	{
+		printStudent(firstP);
+		firstP=firstP->next; 
+	}
+}
 
 void addStudent()
 {
-	struct student*nodeP=(struct student*)malloc(sizeof(struct student));//动态开辟内存 
+	struct student*nodeP=(struct student*)malloc(sizeof(struct student));
 	printf("请分别输入学生的学号 年龄 姓名：\n");
 	scanf("%d %d %s",&nodeP->stuId,&nodeP->stuAge,&nodeP->stuName); 
-	nodeP->next=NULL; 
+	nodeP->next=NULL;
 	if(firstP==NULL)
 	{
 		firstP=nodeP;
@@ -40,7 +54,7 @@ void findStudent()
 	{
 		if(curP->stuId==id)
 		{
-			printf("学号:%d  年龄:%d  姓名:%s\n",curP->stuId,curP->stuAge,curP->stuName);
+			printStudent(curP);
 			x++;
 			break;
 		}
@@ -64,7 +78,6 @@ void deleteStudent()
 	if(curP->stuId==id)
 	{
 		firstP=firstP->next;
-		free(curP);//删除内存空间 
 		curP=NULL;
 		printf("删除成功！\n");
 	    return; 
@@ -78,7 +91,6 @@ void deleteStudent()
 		{
 			struct student *next=curP->next;
 			preP->next=next;
-			free(curP);
 			curP=NULL;
 			printf("删除成功！\n");
 			return;
@@ -100,11 +112,7 @@ void printAllStudent()
 	}
 	else
 	{
-		while(firstP!=NULL)
-		{
-			printf("学号:%d  年龄:%d  姓名:%s\n",firstP->stuId,firstP->stuAge,firstP->stuName);
-			firstP=firstP->next;  
-		}
+		printAll(firstP);
 	}
 } 
 
@@ -116,6 +124,7 @@ int main()
     printf("***请输入3，如果你想要删除一个学生的记录***\n");
     printf("***请输入4，如果你想要打印所有学生的记录***\n");
     printf("***请输入5，如果你想要退出这个程序***\n"); 
+    
     while(1)
 	{
 		int x;
