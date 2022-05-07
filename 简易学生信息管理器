@@ -1,0 +1,139 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h> 
+
+struct student
+{
+	int stuId;
+	int stuAge;
+	char stuName[100];
+	struct student *next;
+}*firstP=NULL,*endP=NULL;//定义头指针和未指针 
+
+void addStudent()
+{
+	struct student*nodeP=(struct student*)malloc(sizeof(struct student));//动态开辟内存 
+	printf("请分别输入学生的学号 年龄 姓名：\n");
+	scanf("%d %d %s",&nodeP->stuId,&nodeP->stuAge,&nodeP->stuName); 
+	nodeP->next=NULL; 
+	if(firstP==NULL)
+	{
+		firstP=nodeP;
+		endP=nodeP;
+	}
+	else
+	{
+		endP->next=nodeP;
+		endP=nodeP;
+	}
+	printf("添加成功！\n");
+}
+
+void findStudent()
+{
+	printf("请输入想要查询学生的学号：");
+	int id;
+	scanf("%d",&id);
+	struct student *curP=firstP;
+	int x=0;
+	while(curP!=NULL)
+	{
+		if(curP->stuId==id)
+		{
+			printf("学号:%d  年龄:%d  姓名:%s\n",curP->stuId,curP->stuAge,curP->stuName);
+			x++;
+			break;
+		}
+		else
+		{
+			curP=curP->next;
+		}
+	}
+	if(x==0)
+	{
+		printf("没有此学生的信息~\n"); 
+	} 
+}
+
+void deleteStudent()
+{
+	printf("请输入想要删除学生的学号：");
+	int id; 
+	scanf("%d",&id);
+	struct student *curP=firstP;//从第一个开始判断 
+	if(curP->stuId==id)
+	{
+		firstP=firstP->next;
+		free(curP);//删除内存空间 
+		curP=NULL;
+		printf("删除成功！\n");
+	    return; 
+	}
+	
+	struct student *preP=curP;
+	curP=curP->next;//从第二个开始判断
+	while(curP!=NULL)
+	{
+		if(curP->stuId==id)
+		{
+			struct student *next=curP->next;
+			preP->next=next;
+			free(curP);
+			curP=NULL;
+			printf("删除成功！\n");
+			return;
+		}
+		else
+		{
+			preP=curP;
+			curP=curP->next;
+		}
+	}
+	printf("该学生不存在，无法删除\n");
+}
+
+void printAllStudent()
+{
+	if(firstP==NULL)
+	{
+		printf("当前还未存入学生信息~\n"); 
+	}
+	else
+	{
+		while(firstP!=NULL)
+		{
+			printf("学号:%d  年龄:%d  姓名:%s\n",firstP->stuId,firstP->stuAge,firstP->stuName);
+			firstP=firstP->next;  
+		}
+	}
+} 
+
+int main()
+{
+	printf("欢迎使用简易学生管理系统\n\n");
+    printf("***请输入1，如果你想要添加一个新的学生记录***\n");
+    printf("***请输入2，如果你想要找到一个学生的记录***\n");
+    printf("***请输入3，如果你想要删除一个学生的记录***\n");
+    printf("***请输入4，如果你想要打印所有学生的记录***\n");
+    printf("***请输入5，如果你想要退出这个程序***\n"); 
+    while(1)
+	{
+		int x;
+		scanf("%d",&x);
+		switch(x)
+		{
+			case 1:addStudent();
+			       break;
+			case 2:findStudent();
+			       break; 
+			case 3:deleteStudent();
+			       break;
+			case 4:printAllStudent();
+			       break;
+			case 5:printf("欢迎下次使用！");
+                   return 0;
+            default:break;
+		}
+	} 
+	return 0; 
+}
