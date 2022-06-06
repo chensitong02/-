@@ -3,7 +3,7 @@
 
 int language;//1-Chinese,2-English
 
-typedf struct Account
+typedef struct Account
 {
 	char name[100];
 	char idCard[19];
