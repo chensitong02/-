@@ -20,7 +20,7 @@ Account * tail=NULL;//指向尾结点的指针
 
 void loadData()
 {
-	FILE* fp=fopen("D:/atm.txt","r"); 
+	FILE* fp=fopen("D:\\atm.txt","r"); 
 	if(fp!=NULL)
 	{
 		while(!feof(fp))
@@ -157,18 +157,9 @@ void showMenu()
 	}
 }
 
-void printLinkedList()
-{
-	Account * curP=head;
-	while(curP!=NULL)
-	{
-		printf("%s %s\n",curP->name,curP->password);
-		curP=curP->next;
-	}
-}
 void saveData()
 {
-	FILE* fp=fopen("D:/atm.txt","w");
+	FILE* fp=fopen("D:\\atm.txt","w");
 	if(fp==NULL)
 	{
 		return;
@@ -181,9 +172,20 @@ void saveData()
 	}
 	fclose(fp);
 }
+
+void printLinkedList()
+{
+	Account * curP=head;
+	while(curP!=NULL)
+	{
+		printf("%s %s %s %s %s\n",curP->name,curP->idCard,curP->tel,curP->username,curP->password);
+		curP=curP->next;
+	}
+}
+
 int main()
 {
-	printf("欢迎来到银行!\n");
+	printf("欢迎来到银行\n");
 	printf("Welcome to bank\n");
 	
 	printf("按1，中文服务\n");
@@ -191,6 +193,7 @@ int main()
 	scanf("%d",&language);
 	
 	showMenu();
+	loadData();
 	saveData();
 	printLinkedList();
 	
