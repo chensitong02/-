@@ -20,7 +20,7 @@ Account * tail=NULL;//指向尾结点的指针
 
 void loadData()
 {
-	FILE* fp=fopen("D:\\atm.txt","r"); 
+	FILE* fp=fopen("D:/atm.txt","r"); 
 	if(fp!=NULL)
 	{
 		while(!feof(fp))//判断当没有到达文件末尾时 
@@ -51,7 +51,7 @@ void loadData()
 
 void saveData()
 {
-	FILE* fp=fopen("D:\\atm.txt","w");
+	FILE* fp=fopen("D:/atm.txt","w");
 	if(fp==NULL)
 	{
 		return;
