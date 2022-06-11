@@ -23,7 +23,7 @@ void loadData()
 	FILE* fp=fopen("D:\\atm.txt","r"); 
 	if(fp!=NULL)
 	{
-		while(!feof(fp))
+		while(!feof(fp))//判断当没有到达文件末尾时 
 		{
 			//创建结点 
 			Account * newNode=(Account *)malloc(sizeof(Account));
@@ -48,6 +48,23 @@ void loadData()
 	}
 	fclose(fp);
 }
+
+void saveData()
+{
+	FILE* fp=fopen("D:\\atm.txt","w");
+	if(fp==NULL)
+	{
+		return;
+	}
+	Account * curP=head;
+	while(curP!=NULL)
+	{
+		fprintf(fp,"%s\t%s\t%s\t%s\t%s\n",curP->name,curP->idCard,curP->tel,curP->username,curP->password);
+		curP=curP->next;
+	}
+	fclose(fp);
+}
+
 void signUp()
 {
 	//申请一块内存空间，将其地址赋值给指针newNodeP 
@@ -155,22 +172,6 @@ void showMenu()
 			return; 
 		}
 	}
-}
-
-void saveData()
-{
-	FILE* fp=fopen("D:\\atm.txt","w");
-	if(fp==NULL)
-	{
-		return;
-	}
-	Account * curP=head;
-	while(curP!=NULL)
-	{
-		fprintf(fp,"%s\t%s\t%s\t%s\t%s\n",curP->name,curP->idCard,curP->tel,curP->username,curP->password);
-		curP=curP->next;
-	}
-	fclose(fp);
 }
 
 void printLinkedList()
