@@ -68,7 +68,6 @@ void saveData()
 void signUp()
 {
 	//申请一块内存空间，将其地址赋值给指针newNodeP 
-	loadData();
 	Account * newNodeP=(Account *)malloc(sizeof(Account));
 	
 	//为节点赋值 
