@@ -192,8 +192,8 @@ int main()
 	printf("Press 2，English Service\n");
 	scanf("%d",&language);
 	
-	showMenu();
 	loadData();
+	showMenu();
 	saveData();
 	printLinkedList();
 	
