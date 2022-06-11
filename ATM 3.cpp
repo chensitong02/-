@@ -17,15 +17,14 @@ typedef struct Account
 
 Account * head=NULL;//指向头结点的指针
 Account * tail=NULL;//指向尾结点的指针 
-
 Account * curAccount=NULL;//记录当前账户 
 
-void loadData() 
+void loadData()
 {
 	FILE* fp=fopen("D:/atm.txt","r"); 
 	if(fp!=NULL)
 	{
-		while(!feof(fp))
+		while(!feof(fp))//判断当没有到达文件末尾时 
 		{
 			//创建结点 
 			Account * newNode=(Account *)malloc(sizeof(Account));
@@ -33,6 +32,7 @@ void loadData()
 			//结点初始化 
 			newNode->next=NULL;
 			fscanf(fp,"%s %s %s %s %s\n",newNode->name,newNode->idCard,newNode->tel,newNode->username,newNode->password); 
+			
 			//添加结点到链表
 			if(head==NULL)
 			{
@@ -45,9 +45,9 @@ void loadData()
 				tail=newNode;
 			}
 		}
-		fclose(fp);
 		printf("加载成功！\n");
 	}
+	fclose(fp);
 }
 
 void saveData()
@@ -134,7 +134,7 @@ void signUp()
 		tail=newNodeP;
 	}
 }
-
+//找到对应用户返回1，否则0 
 int findAccount(Account a)
 {
 	Account * curp=head;
@@ -161,12 +161,10 @@ void updatePassword()
 		scanf("%s",curAccount->password);
 		while(strcmp(oldPassword,curAccount->password)==0)
 		{
-			printf("新旧密码不能相同\n");
-			printf("重新输入\n");
+			printf("新旧密码不能相同,请重新输入新密码：\n");
 			scanf("%s",curAccount->password);
 		}
-		printf("修改成功");
-		
+		printf("密码已修改成功\n！");
 	}
 	else
 	{
@@ -176,6 +174,7 @@ void updatePassword()
 
 void signIn()
 {
+	printf("仅有三次输入机会！\n"); 
 	for(int i=0;i<3;i++)
 	{
 		Account a; 
@@ -188,18 +187,15 @@ void signIn()
 		if(findAccount(a))
 		{
 			printf("登录成功！\n");
-			printf("换密码请按 1 \n");
-			int i;
-			scanf("%d",&i);
-			if(i==1)
+			printf("如果想要更换密码请按1\n");
+			int x;
+			scanf("%d",&x);
+			switch(x)
 			{
-				updatePassword();
-				break;			
-			} 
-			else
-			{
-				break;
+				case 1:updatePassword();break;
+				default:break;
 			}
+			break; 
 		}
 		else
 		{
@@ -207,7 +203,7 @@ void signIn()
 		}
 	}
 }
-//加载成功返回1，加载失败返回0 
+ 
 void showMenu()
 {
 	while(1)
@@ -248,7 +244,7 @@ void printLinkedList()
 	Account * curP=head;
 	while(curP!=NULL)
 	{
-		printf("%s %s\n",curP->name,curP->password);
+		printf("%s %s %s %s %s\n",curP->name,curP->idCard,curP->tel,curP->username,curP->password);
 		curP=curP->next;
 	}
 }
