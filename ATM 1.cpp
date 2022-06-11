@@ -143,7 +143,7 @@ void printLinkedList()
 	Account * curP=head;
 	while(curP!=NULL)
 	{
-		printf("%s %s\n",curP->name,curP->username);
+		printf("%s %s %s %s %s\n",curP->name,curP->idCard,curP->tel,curP->username,curP->password);
 		curP=curP->next;
 	}
 }
