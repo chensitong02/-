@@ -12,21 +12,21 @@ typedef struct Account
 	char password[7];
 	float money;
 	
-	struct Account * next;//ÏÂÒ»¸ö½áµãµÄµØÖ· 
+	struct Account * next;//ä¸‹ä¸€ä¸ªç»“ç‚¹çš„åœ°å€ 
 }Account;
 
-Account * head=NULL;//Ö¸ÏòÍ·½áµãµÄÖ¸Õë
-Account * tail=NULL;//Ö¸ÏòÎ²½áµãµÄÖ¸Õë 
+Account * head=NULL;//æŒ‡å‘å¤´ç»“ç‚¹çš„æŒ‡é’ˆ
+Account * tail=NULL;//æŒ‡å‘å°¾ç»“ç‚¹çš„æŒ‡é’ˆ 
 
 void signUp()
 {
-	//ÉêÇëÒ»¿éÄÚ´æ¿Õ¼ä£¬½«ÆäµØÖ·¸³Öµ¸øÖ¸ÕënewNodeP 
+	//ç”³è¯·ä¸€å—å†…å­˜ç©ºé—´ï¼Œå°†å…¶åœ°å€èµ‹å€¼ç»™æŒ‡é’ˆnewNodeP 
 	Account * newNodeP=(Account *)malloc(sizeof(Account));
 	
-	//Îª½Úµã¸³Öµ 
+	//ä¸ºèŠ‚ç‚¹èµ‹å€¼ 
 	if(language==1)
 	{
-		printf("ÊäÈëĞÕÃû£º\n");
+		printf("è¾“å…¥å§“åï¼š\n");
 	}
 	else if(language==2)
 	{
@@ -36,7 +36,7 @@ void signUp()
 	
 	if(language==1)
 	{
-		printf("ÊäÈëÉí·İÖ¤£º\n");
+		printf("è¾“å…¥èº«ä»½è¯ï¼š\n");
 	}
 	else if(language==2)
 	{
@@ -46,7 +46,7 @@ void signUp()
 	
 	if(language==1)
 	{
-		printf("ÊäÈëµç»°£º\n");
+		printf("è¾“å…¥ç”µè¯ï¼š\n");
 	}
 	else if(language==2)
 	{
@@ -56,7 +56,7 @@ void signUp()
 	
 	if(language==1)
 	{
-		printf("ÊäÈë¿¨ºÅ£º\n");
+		printf("è¾“å…¥å¡å·ï¼š\n");
 	}
 	else if(language==2)
 	{
@@ -66,7 +66,7 @@ void signUp()
 	
 	if(language==1)
 	{
-		printf("ÊäÈëÃÜÂë£º\n");
+		printf("è¾“å…¥å¯†ç ï¼š\n");
 	}
 	else if(language==2)
 	{
@@ -77,7 +77,7 @@ void signUp()
 	newNodeP->money=0.0f;
 	newNodeP->next=NULL;
 	
-	//½«½áµãÌí¼Óµ½Á´±í 
+	//å°†ç»“ç‚¹æ·»åŠ åˆ°é“¾è¡¨ 
 	if(head==NULL)
 	{
 		head=newNodeP;
@@ -91,11 +91,11 @@ void signUp()
 	
 	if(language==1)
 	{
-		printf("Ìí¼Ó³É¹¦£¡\n");
+		printf("æ·»åŠ æˆåŠŸï¼\n");
 	}
 	else if(language==2)
 	{
-		printf("added£¡\n");
+		printf("addedï¼\n");
 	}
 }
 
@@ -111,15 +111,15 @@ void showMenu()
 		system("cls");
 		if(language==1)
 		{
-			printf("°´1, ¿ª»§\n");
-			printf("°´2, µÇÂ½\n");
-			printf("°´3, ÍË³ö\n");
+			printf("æŒ‰1, å¼€æˆ·\n");
+			printf("æŒ‰2, ç™»é™†\n");
+			printf("æŒ‰3, é€€å‡º\n");
 		}
 		else if(language==2)
 		{
 			printf("Press 1, sign up\n");
 			printf("Press 2, sign in\n");
-			printf("Press 3£¬sign out\n");
+			printf("Press 3ï¼Œsign out\n");
 		}
 		int n;
 		scanf("%d",&n);
@@ -150,15 +150,14 @@ void printLinkedList()
 
 int main()
 {
-	printf("»¶Ó­À´µ½ÒøĞĞ\n");
+	printf("æ¬¢è¿æ¥åˆ°é“¶è¡Œ\n");
 	printf("Welcome to bank\n");
 	
-	printf("°´1£¬ÖĞÎÄ·şÎñ\n");
-	printf("Press 2£¬English Service\n");
+	printf("æŒ‰1ï¼Œä¸­æ–‡æœåŠ¡\n");
+	printf("Press 2ï¼ŒEnglish Service\n");
 	scanf("%d",&language);
 	
 	showMenu();
-	
 	printLinkedList();
 	
 	return 0;	
