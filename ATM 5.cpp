@@ -229,7 +229,7 @@ void signUp()
 	}
 	else if(language==2)
 	{
-		printf("Input tel:\n");
+		printf("Input telephone:\n");
 	}
 	scanf("%s",newNodeP->tel);
 	
@@ -343,7 +343,7 @@ void updatePassword()
 	}
 }
 
-void drawMoneyTransaction(Account * curAccount,int money)
+void drawMoneyTransaction(Account * curAccount,float money)
 {
 	//产生取款交易记录
 		
@@ -384,8 +384,8 @@ void drawMoney()
 	{
 		printf("Please enter the withdrawal amount：");
 	} 
-	int money;
-	scanf("%d",&money);
+	float money;
+	scanf("%f",&money);
 	
 	if(curAccount->money>=money)
 	{
@@ -413,7 +413,7 @@ void drawMoney()
 	}
 }
  
-void saveMoneyTransaction(Account * curAccount,int money)
+void saveMoneyTransaction(Account * curAccount,float money)
 {
 	//产生存款交易记录
 		
@@ -455,8 +455,8 @@ void saveMoney()
 	{
 		printf("Please enter the deposit amount:");
 	}
-	int money;
-	scanf("%d",&money);
+	float money;
+	scanf("%f",&money);
 	
 	curAccount->money+=money;
 	if(language==1)
@@ -527,8 +527,8 @@ void transfer()
 		{
 			printf("Please enter the transfer amount：");
 		}
-		int money;
-		scanf("%d",&money); 
+		float money;
+		scanf("%f",&money); 
 		
 		//验证金额的合法性
 		if(curAccount->money>=money)
@@ -612,6 +612,37 @@ void printTransaction(char curUnsername[])
 	system("pause");
 }
 
+void printCurAccount(char username[])
+{
+	Account * curP=head;
+	while(curP!=NULL)
+	{
+		if(strcmp(curP->username,username)==0)
+		{
+			if(language==1)
+			{
+				printf("姓名:%s\n",curP->name);
+				printf("身份证:%s\n",curP->idCard);
+				printf("电话:%s\n",curP->tel);
+				printf("卡号:%s\n",curP->username);
+				printf("密码:%s\n",curP->password);
+				printf("金额:%f\n",curP->money);
+			}
+			else if(language==2)
+			{
+				printf("name:%s\n",curP->name);
+				printf("idCard:%s\n",curP->idCard);
+				printf("telephone:%s\n",curP->tel);
+				printf("username:%s\n",curP->username);
+				printf("password:%s\n",curP->password);
+				printf("money:%f\n",curP->money);
+			}
+		}
+		curP=curP->next;
+	}
+	system("pause");	
+}
+
 void signIn()
 {
 	if(language==1)
@@ -651,20 +682,22 @@ void signIn()
 			if(language==1)
 			{
 				printf("登录成功！\n");
-				printf("如果想要更换密码请按1\n");
-				printf("如果想要取款请按2\n");
-				printf("如果想要存款请按3\n"); 
-				printf("如果想要转账请按4\n"); 
-				printf("如果想要打印交易记录请按5\n");
+				printf("修改密码      请按1\n");
+				printf("取款业务      请按2\n");
+				printf("存款业务      请按3\n"); 
+				printf("转账业务      请按4\n"); 
+				printf("查询交易      请按5\n");
+				printf("查询信息      请按6\n"); 
 			}
 			else if(language==2)
 			{
 			    printf("Login successful！\n");
-				printf("If you want to change the password, press 1\n");
-				printf("If you want to withdraw money please press 2\n");
-				printf("If you want to deposit please press 3\n"); 
-				printf("If you want to transfer money, press 4\n"); 
-				printf("If you want to print the transaction, press 5\n");
+				printf("change password           press 1\n");
+				printf("withdraw money            press 2\n");
+				printf("deposit please            press 3\n"); 
+				printf("transfer money            press 4\n"); 
+				printf("Transaction Records       press 5\n");
+				printf("personal information      Press 6\n");
 			}
 			int x;
 			scanf("%d",&x);
@@ -675,6 +708,7 @@ void signIn()
 				case 3:saveMoney();break;				
 				case 4:transfer();break;
 				case 5:printTransaction(a.username);break;
+				case 6:printCurAccount(a.username);break;
 				default:break;
 			}
 			return; 
