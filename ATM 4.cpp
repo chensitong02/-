@@ -13,12 +13,12 @@ typedef struct Account
 	char password[7];
 	float money;
 	
-	struct Account * next;//ÏÂÒ»¸ö½áµãµÄµØÖ· 
+	struct Account * next;//ä¸‹ä¸€ä¸ªç»“ç‚¹çš„åœ°å€ 
 }Account;
 
-Account * head=NULL;//Ö¸ÏòÍ·½áµãµÄÖ¸Õë
-Account * tail=NULL;//Ö¸ÏòÎ²½áµãµÄÖ¸Õë
-Account * curAccount=NULL;//¼ÇÂ¼µ±Ç°ÕË»§ 
+Account * head=NULL;//æŒ‡å‘å¤´ç»“ç‚¹çš„æŒ‡é’ˆ
+Account * tail=NULL;//æŒ‡å‘å°¾ç»“ç‚¹çš„æŒ‡é’ˆ
+Account * curAccount=NULL;//è®°å½•å½“å‰è´¦æˆ· 
 
 typedef struct Transaction
 {
@@ -26,8 +26,8 @@ typedef struct Transaction
 	time_t timestamp;
 	char nowdaytime[80];
 	char nowtime[80]; 
-	char type;//+±íÊ¾È¡¿î£¬-±íÊ¾´æ¿î
-	float amount;//Êı¶î
+	char type;//+è¡¨ç¤ºå­˜æ¬¾ï¼Œ-è¡¨ç¤ºå–æ¬¾
+	float amount;//æ•°é¢
 	
 	struct Transaction * next;
 }Transaction;
@@ -40,12 +40,12 @@ void loadData()
 	FILE* fp=fopen("D:/atm.txt","r"); 
 	if(fp!=NULL)
 	{
-		while(!feof(fp))//ÅĞ¶Ïµ±Ã»ÓĞµ½´ïÎÄ¼şÄ©Î²Ê± 
+		while(!feof(fp))//åˆ¤æ–­å½“æ²¡æœ‰åˆ°è¾¾æ–‡ä»¶æœ«å°¾æ—¶ 
 		{
-			//´´½¨½áµã 
+			//åˆ›å»ºç»“ç‚¹ 
 			Account * newNode=(Account *)malloc(sizeof(Account));
 			
-			//½áµã³õÊ¼»¯ 
+			//ç»“ç‚¹åˆå§‹åŒ– 
 			newNode->next=NULL;
 			int res=fscanf(fp,"%s\t%s\t%s\t%s\t%s\t%f\n",newNode->name,newNode->idCard,newNode->tel,newNode->username,newNode->password,&newNode->money); 
 			
@@ -54,7 +54,7 @@ void loadData()
 				return;
 			}
 			
-			//Ìí¼Ó½áµãµ½Á´±í
+			//æ·»åŠ ç»“ç‚¹åˆ°é“¾è¡¨
 			if(head==NULL)
 			{
 				head=newNode;
@@ -66,12 +66,12 @@ void loadData()
 				tail=newNode;
 			}
 		}
-		printf("¼ÓÔØ³É¹¦£¡\n");
+		printf("åŠ è½½æˆåŠŸï¼\n");
 		fclose(fp);
 	}
 	else
 	{
-		printf("¼ÓÔØÊ§°Ü£¡\n"); 
+		printf("åŠ è½½å¤±è´¥ï¼\n"); 
 	} 
 }
 
@@ -82,10 +82,10 @@ void loadTransaction()
 	{
 		while(!feof(fp))
 		{
-			//´´½¨½áµã 
+			//åˆ›å»ºç»“ç‚¹ 
 			Transaction * newNode=(Transaction *)malloc(sizeof(Transaction));
 			
-			//½áµã³õÊ¼»¯ 
+			//ç»“ç‚¹åˆå§‹åŒ– 
 			newNode->next=NULL;
 			int res=fscanf(fp,"%s\t%s %s\t%c%f\n",newNode->username,newNode->nowdaytime,newNode->nowtime,&newNode->type,&newNode->amount); 
 			
@@ -94,7 +94,7 @@ void loadTransaction()
 				return;
 			}
 			
-			//Ìí¼Ó½áµãµ½Á´±í
+			//æ·»åŠ ç»“ç‚¹åˆ°é“¾è¡¨
 			if(tHead==NULL)
 			{
 				tHead=newNode;
@@ -110,12 +110,12 @@ void loadTransaction()
 				break;
 			} 
 		}
-		printf("¼ÓÔØ³É¹¦£¡\n");
+		printf("åŠ è½½æˆåŠŸï¼\n");
 		fclose(fp);
 	}
 	else
 	{
-		printf("¼ÓÔØÊ§°Ü£¡\n"); 
+		printf("åŠ è½½å¤±è´¥ï¼\n"); 
 	} 	
 } 
 
@@ -137,13 +137,13 @@ void saveData()
 
 void signUp()
 {
-	//ÉêÇëÒ»¿éÄÚ´æ¿Õ¼ä£¬½«ÆäµØÖ·¸³Öµ¸øÖ¸ÕënewNodeP 
+	//ç”³è¯·ä¸€å—å†…å­˜ç©ºé—´ï¼Œå°†å…¶åœ°å€èµ‹å€¼ç»™æŒ‡é’ˆnewNodeP 
 	Account * newNodeP=(Account *)malloc(sizeof(Account));
 	
-	//Îª½Úµã¸³Öµ 
+	//ä¸ºèŠ‚ç‚¹èµ‹å€¼ 
 	if(language==1)
 	{
-		printf("ÊäÈëĞÕÃû£º\n");
+		printf("è¾“å…¥å§“åï¼š\n");
 	}
 	else if(language==2)
 	{
@@ -153,7 +153,7 @@ void signUp()
 	
 	if(language==1)
 	{
-		printf("ÊäÈëÉí·İÖ¤£º\n");
+		printf("è¾“å…¥èº«ä»½è¯ï¼š\n");
 	}
 	else if(language==2)
 	{
@@ -163,7 +163,7 @@ void signUp()
 	
 	if(language==1)
 	{
-		printf("ÊäÈëµç»°£º\n");
+		printf("è¾“å…¥ç”µè¯ï¼š\n");
 	}
 	else if(language==2)
 	{
@@ -173,7 +173,7 @@ void signUp()
 	
 	if(language==1)
 	{
-		printf("ÊäÈë¿¨ºÅ£º\n");
+		printf("è¾“å…¥å¡å·ï¼š\n");
 	}
 	else if(language==2)
 	{
@@ -182,7 +182,7 @@ void signUp()
 	scanf("%s",newNodeP->username);
 	if(language==1)
 	{
-		printf("ÊäÈëÃÜÂë£º\n");
+		printf("è¾“å…¥å¯†ç ï¼š\n");
 	}
 	else if(language==2)
 	{
@@ -191,7 +191,7 @@ void signUp()
 	scanf("%s",newNodeP->password);
 	newNodeP->money=0.0f;
 	newNodeP->next=NULL;
-	//½«½áµãÌí¼Óµ½Á´±í 
+	//å°†ç»“ç‚¹æ·»åŠ åˆ°é“¾è¡¨ 
 	if(head==NULL)
 	{
 		head=newNodeP;
@@ -203,7 +203,7 @@ void signUp()
 		tail=newNodeP;
 	}
 }
-//ÕÒµ½¶ÔÓ¦ÓÃ»§·µ»Ø1£¬·ñÔò0 
+//æ‰¾åˆ°å¯¹åº”ç”¨æˆ·è¿”å›1ï¼Œå¦åˆ™0 
 int findAccount(Account a)
 {
 	Account * curp=head;
@@ -219,45 +219,45 @@ int findAccount(Account a)
 	return 0;
 }
 
-void updatePassword()//¸ü¸ÄÃÜÂë 
+void updatePassword()//æ›´æ”¹å¯†ç  
 {
-	printf("ÇëÊäÈë¾ÉÃÜÂë£º");
+	printf("è¯·è¾“å…¥æ—§å¯†ç ï¼š");
 	char oldPassword[100];
 	scanf("%s",oldPassword);
 	if(strcmp(oldPassword,curAccount->password)==0)
 	{
-		printf("ÇëÊäÈëĞÂÃÜÂë£º");
+		printf("è¯·è¾“å…¥æ–°å¯†ç ï¼š");
 		scanf("%s",curAccount->password);
 		while(strcmp(oldPassword,curAccount->password)==0)
 		{
-			printf("ĞÂ¾ÉÃÜÂë²»ÄÜÏàÍ¬,ÇëÖØĞÂÊäÈëĞÂÃÜÂë£º\n");
+			printf("æ–°æ—§å¯†ç ä¸èƒ½ç›¸åŒ,è¯·é‡æ–°è¾“å…¥æ–°å¯†ç ï¼š\n");
 			scanf("%s",curAccount->password);
 		}
-		printf("ÃÜÂëÒÑĞŞ¸Ä³É¹¦\n£¡");
+		printf("å¯†ç å·²ä¿®æ”¹æˆåŠŸ\nï¼");
 	}
 	else
 	{
-		printf("¾ÉÃÜÂëÊäÈë´íÎó£¡²»ÄÜĞŞ¸Ä£¡\n");
+		printf("æ—§å¯†ç è¾“å…¥é”™è¯¯ï¼ä¸èƒ½ä¿®æ”¹ï¼\n");
 	}
 }
 
 void drawMoney()
 {
-	printf("ÇëÊäÈëÈ¡¿î½ğ¶î£º");
+	printf("è¯·è¾“å…¥å–æ¬¾é‡‘é¢ï¼š");
 	int money;
 	scanf("%d",&money);
 	
 	if(curAccount->money>=money)
 	{
 		curAccount->money-=money;
-		printf("È¡¿î³É¹¦£¡\n");
+		printf("å–æ¬¾æˆåŠŸï¼\n");
 		
-		//²úÉú½»Ò×¼ÇÂ¼
+		//äº§ç”Ÿäº¤æ˜“è®°å½•
 		
-		//´´½¨½áµã
+		//åˆ›å»ºç»“ç‚¹
 		Transaction * newNode=(Transaction *)malloc(sizeof(Transaction));
 		
-		//½áµã³õÊ¼»¯
+		//ç»“ç‚¹åˆå§‹åŒ–
 		newNode->next=NULL;
 		strcpy(newNode->username,curAccount->username);
 		newNode->timestamp=time(NULL);
@@ -268,7 +268,7 @@ void drawMoney()
 		newNode->type='-';
 		newNode->amount=money;
 		
-		//Ìí¼Ó½»Ò×¼ÇÂ¼½áµãµ½Á´±í 
+		//æ·»åŠ äº¤æ˜“è®°å½•ç»“ç‚¹åˆ°é“¾è¡¨ 
 		if(tHead==NULL)
 		{
 			tHead=newNode;
@@ -283,25 +283,25 @@ void drawMoney()
 	}
 	else
 	{
-		printf("Óà¶î²»×ã!\n");
+		printf("ä½™é¢ä¸è¶³!\n");
 	}
 }
 
 void saveMoney()
 {
-	printf("ÇëÊäÈë´æ¿î½ğ¶î£º");
+	printf("è¯·è¾“å…¥å­˜æ¬¾é‡‘é¢ï¼š");
 	int money;
 	scanf("%d",&money);
 	
 	curAccount->money+=money;
-	printf("´æ¿î³É¹¦£¡\n");
+	printf("å­˜æ¬¾æˆåŠŸï¼\n");
 	
-	//²úÉú½»Ò×¼ÇÂ¼
+	//äº§ç”Ÿäº¤æ˜“è®°å½•
 		
-	//´´½¨½áµã
+	//åˆ›å»ºç»“ç‚¹
 	Transaction * newNode=(Transaction *)malloc(sizeof(Transaction));
 	
-	//½áµã³õÊ¼»¯
+	//ç»“ç‚¹åˆå§‹åŒ–
 	newNode->next=NULL;
 	strcpy(newNode->username,curAccount->username);
 	newNode->timestamp=time(NULL);
@@ -312,7 +312,7 @@ void saveMoney()
 	newNode->type='+';
 	newNode->amount=money;
 	
-	//Ìí¼Ó½»Ò×¼ÇÂ¼½áµãµ½Á´±í 
+	//æ·»åŠ äº¤æ˜“è®°å½•ç»“ç‚¹åˆ°é“¾è¡¨ 
 	if(tHead==NULL)
 	{
 		tHead=newNode;
@@ -352,24 +352,24 @@ void saveTransaction()
 
 void signIn()
 {
-	printf("½öÓĞÈı´ÎÊäÈë»ú»á£¡\n"); 
+	printf("ä»…æœ‰ä¸‰æ¬¡è¾“å…¥æœºä¼šï¼\n"); 
 	for(int i=0;i<3;i++)
 	{
 		Account a; 
-		printf("ÇëÊäÈëÕËºÅ£º");
+		printf("è¯·è¾“å…¥è´¦å·ï¼š");
 		scanf("%s",a.username);
 		
-		printf("ÇëÊäÈëÃÜÂë£º");
+		printf("è¯·è¾“å…¥å¯†ç ï¼š");
 		scanf("%s",a.password);
 		
 		if(findAccount(a))
 		{
 		    system("cls");
-			printf("µÇÂ¼³É¹¦£¡\n");
-			printf("Èç¹ûÏëÒª¸ü»»ÃÜÂëÇë°´1\n");
-			printf("Èç¹ûÏëÒªÈ¡¿îÇë°´2\n");
-			printf("Èç¹ûÏëÒª´æ¿îÇë°´3\n"); 
-			printf("Èç¹ûÏëÒª´òÓ¡½»Ò×¼ÇÂ¼Çë°´4\n"); 
+			printf("ç™»å½•æˆåŠŸï¼\n");
+			printf("å¦‚æœæƒ³è¦æ›´æ¢å¯†ç è¯·æŒ‰1\n");
+			printf("å¦‚æœæƒ³è¦å–æ¬¾è¯·æŒ‰2\n");
+			printf("å¦‚æœæƒ³è¦å­˜æ¬¾è¯·æŒ‰3\n"); 
+			printf("å¦‚æœæƒ³è¦æ‰“å°äº¤æ˜“è®°å½•è¯·æŒ‰4\n"); 
 			int x;
 			scanf("%d",&x);
 			switch(x)
@@ -384,7 +384,7 @@ void signIn()
 		}
 		else
 		{
-			printf("µÇÂ¼Ê§°Ü£¡\n");
+			printf("ç™»å½•å¤±è´¥ï¼\n");
 		}
 	}
 }
@@ -396,18 +396,18 @@ void showMenu()
 		system("cls");
 		if(language==1)
 		{
-			printf("°´1, ¿ª»§\n");
-			printf("°´2, µÇÂ½\n");
-			printf("°´3, ÍË³ö\n");
+			printf("æŒ‰1, å¼€æˆ·\n");
+			printf("æŒ‰2, ç™»é™†\n");
+			printf("æŒ‰3, é€€å‡º\n");
 		}
 		else if(language==2)
 		{
 			printf("Press 1, sign up\n");
 			printf("Press 2, sign in\n");
-			printf("Press 3£¬sign out\n");
+			printf("Press 3ï¼Œsign out\n");
 		}
 		int n;
-		scanf("%d",&n);//Ñ¡ÔñÓïÑÔ»òÍË³ö 
+		scanf("%d",&n);//é€‰æ‹©è¯­è¨€æˆ–é€€å‡º 
 		if(n==1)
 		{
 			signUp();
@@ -436,11 +436,11 @@ void printLinkedList()
 
 int main()
 {
-	printf("»¶Ó­À´µ½ÒøĞĞ\n");
+	printf("æ¬¢è¿æ¥åˆ°é“¶è¡Œ\n");
 	printf("Welcome to bank\n");
 	
-	printf("°´1£¬ÖĞÎÄ·şÎñ\n");
-	printf("Press 2£¬English Service\n");
+	printf("æŒ‰1ï¼Œä¸­æ–‡æœåŠ¡\n");
+	printf("Press 2ï¼ŒEnglish Service\n");
 	scanf("%d",&language);
 	
 	loadData();
