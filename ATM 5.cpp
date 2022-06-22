@@ -354,7 +354,7 @@ void drawMoneyTransaction(Account * curAccount,float money)
 	newNode->next=NULL;
 	strcpy(newNode->username,curAccount->username);
 	newNode->timestamp=time(NULL);
-        struct tm * timeinfo;
+	struct tm * timeinfo;
 	timeinfo=localtime(&newNode->timestamp);
 	strftime(newNode->nowdaytime,sizeof(newNode->nowdaytime),"%Y/%m/%d",timeinfo);
 	strftime(newNode->nowtime,sizeof(newNode->nowtime),"%H:%M:%S",timeinfo);
@@ -859,7 +859,7 @@ int main()
 	printf("\n#################################################################################\n");
 	printf("\n#                                                                               #\n");
 	printf("\n#################################################################################\n\n");
-        printf("请输入你的选择："); 
+	printf("请输入你的选择："); 
 	scanf("%d",&language);
 	
 	loadData();
