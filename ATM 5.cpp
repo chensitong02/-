@@ -355,9 +355,9 @@ void drawMoneyTransaction(Account * curAccount,float money)
 	strcpy(newNode->username,curAccount->username);
 	newNode->timestamp=time(NULL);
         struct tm * timeinfo;
-        timeinfo=localtime(&newNode->timestamp);
-        strftime(newNode->nowdaytime,sizeof(newNode->nowdaytime),"%Y/%m/%d",timeinfo);
-        strftime(newNode->nowtime,sizeof(newNode->nowtime),"%H:%M:%S",timeinfo);
+	timeinfo=localtime(&newNode->timestamp);
+	strftime(newNode->nowdaytime,sizeof(newNode->nowdaytime),"%Y/%m/%d",timeinfo);
+	strftime(newNode->nowtime,sizeof(newNode->nowtime),"%H:%M:%S",timeinfo);
 	newNode->type='-';
 	newNode->amount=money;
 	
@@ -846,19 +846,19 @@ void printAllTransaction()
 int main()
 {
 	printf("\n#################################################################################\n");
-        printf("\n#                             * 欢迎来到行星银行 *                              #\n");
-        printf("\n#                        * Welcome to the Planet Bank *                         #\n");
-        printf("\n#################################################################################\n\n");
-        printf("        ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆\n");
-        printf("        |◆|******|◆|             请选择语言              |◆|******|◆|\n");
-        printf("        |◆|******|◆|                                     |◆|******|◆|\n");
-        printf("        |◆|******|◆|       ☆ 中文服务    请按 1         |◆|******|◆|\n"); 
-        printf("        |◆|******|◆|       ☆ 英文服务    请按 2         |◆|******|◆|\n");
-        printf("        |◆|******|◆|                                     |◆|******|◆|\n");
-        printf("        ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆\n");
+	printf("\n#                             * 欢迎来到行星银行 *                              #\n");
+	printf("\n#                        * Welcome to the Planet Bank *                         #\n");
+	printf("\n#################################################################################\n\n");
+	printf("        ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆\n");
+	printf("        |◆|******|◆|             请选择语言              |◆|******|◆|\n");
+	printf("        |◆|******|◆|                                     |◆|******|◆|\n");
+	printf("        |◆|******|◆|       ☆ 中文服务    请按 1         |◆|******|◆|\n"); 
+	printf("        |◆|******|◆|       ☆ 英文服务    请按 2         |◆|******|◆|\n");
+	printf("        |◆|******|◆|                                     |◆|******|◆|\n");
+	printf("        ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆\n");
 	printf("\n#################################################################################\n");
-        printf("\n#                                                                               #\n");
-        printf("\n#################################################################################\n\n");
+	printf("\n#                                                                               #\n");
+	printf("\n#################################################################################\n\n");
         printf("请输入你的选择："); 
 	scanf("%d",&language);
 	
