@@ -261,10 +261,10 @@ void drawMoney()
 		newNode->next=NULL;
 		strcpy(newNode->username,curAccount->username);
 		newNode->timestamp=time(NULL);
-	    struct tm * timeinfo;
-	    timeinfo=localtime(&newNode->timestamp);
-	    strftime(newNode->nowdaytime,sizeof(newNode->nowdaytime),"%Y/%m/%d",timeinfo);
-	    strftime(newNode->nowtime,sizeof(newNode->nowtime),"%H:%M:%S",timeinfo);
+		struct tm * timeinfo;
+		timeinfo=localtime(&newNode->timestamp);
+		strftime(newNode->nowdaytime,sizeof(newNode->nowdaytime),"%Y/%m/%d",timeinfo);
+		strftime(newNode->nowtime,sizeof(newNode->nowtime),"%H:%M:%S",timeinfo);
 		newNode->type='-';
 		newNode->amount=money;
 		
