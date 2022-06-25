@@ -92,7 +92,7 @@ void loadData()
 
 void loadTransaction()
 {
-    FILE* fp=fopen("D:/Transaction.txt","r"); 
+    	FILE* fp=fopen("D:/Transaction.txt","r"); 
 	if(fp!=NULL)
 	{
 		while(!feof(fp))
@@ -585,7 +585,7 @@ void transfer()
 void printTransaction(char curUnsername[]) 
 {
 	int order=0;//定义一个指令来判断账户有无进行交易; 
-    Transaction * curP=tHead;
+    	Transaction * curP=tHead;
 	while(curP!=NULL)
 	{
 		if(strcmp(curP->username,curUnsername)==0)
