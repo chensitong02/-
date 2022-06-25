@@ -341,6 +341,8 @@ void updatePassword()
 			printf("Old password entered incorrectly！ Cannot be modified！\n");
 		}
 	}
+	system("pause");
+	return;
 }
 
 void drawMoneyTransaction(Account * curAccount,float money)
@@ -354,10 +356,10 @@ void drawMoneyTransaction(Account * curAccount,float money)
 	newNode->next=NULL;
 	strcpy(newNode->username,curAccount->username);
 	newNode->timestamp=time(NULL);
-	struct tm * timeinfo;
-	timeinfo=localtime(&newNode->timestamp);
-	strftime(newNode->nowdaytime,sizeof(newNode->nowdaytime),"%Y/%m/%d",timeinfo);
-	strftime(newNode->nowtime,sizeof(newNode->nowtime),"%H:%M:%S",timeinfo);
+    struct tm * timeinfo;
+    timeinfo=localtime(&newNode->timestamp);
+    strftime(newNode->nowdaytime,sizeof(newNode->nowdaytime),"%Y/%m/%d",timeinfo);
+    strftime(newNode->nowtime,sizeof(newNode->nowtime),"%H:%M:%S",timeinfo);
 	newNode->type='-';
 	newNode->amount=money;
 	
@@ -411,6 +413,8 @@ void drawMoney()
 			printf("Insufficient balance！\n");
 		}
 	}
+	system("pause");
+	return;
 }
  
 void saveMoneyTransaction(Account * curAccount,float money)
@@ -468,6 +472,8 @@ void saveMoney()
 		printf("Deposit successful！\n");
 	} 
 	saveMoneyTransaction(curAccount,money);//产生存款交易记录
+	system("pause");
+	return;
 }
 
 //保存所有交易信息 
@@ -571,6 +577,8 @@ void transfer()
 			printf("Transfer failed！\n");
 		}
 	}
+	system("pause");
+	return;
 }
 
 //打印登录账户的所有交易信息
@@ -610,6 +618,7 @@ void printTransaction(char curUnsername[])
 		}
 	}
 	system("pause");
+	return;
 }
 
 void printCurAccount(char username[])
@@ -640,7 +649,8 @@ void printCurAccount(char username[])
 		}
 		curP=curP->next;
 	}
-	system("pause");	
+	system("pause");
+	return;	
 }
 
 void signIn()
@@ -678,70 +688,72 @@ void signIn()
 		
 		if(findAccount(a))
 		{
-		    system("cls");
-			if(language==1)
+			while(1)
 			{
-			    printf("登录成功！\n");
-			    printf("\n#################################################################################\n");
-			    printf("\n#                              * 欢迎来到行星银行 *                             #\n");
-			    printf("\n#################################################################################\n\n");
-			    printf("        ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆\n");
-			    printf("        |◆|******|◆|               请选择操作            |◆|******|◆|\n");
-			    printf("        |◆|******|◆|                                     |◆|******|◆|\n");
-			    printf("        |◆|******|◆|        ☆ 修改密码    请按 1        |◆|******|◆|\n"); 
-			    printf("        |◆|******|◆|        ☆ 取款业务    请按 2        |◆|******|◆|\n");
-			    printf("        |◆|******|◆|        ☆ 存款业务    请按 3        |◆|******|◆|\n");
-			    printf("        |◆|******|◆|        ☆ 转账业务    请按 4        |◆|******|◆|\n");
-			    printf("        |◆|******|◆|        ☆ 查询交易    请按 5        |◆|******|◆|\n");
-			    printf("        |◆|******|◆|        ☆ 查询信息    请按 6        |◆|******|◆|\n");
-			    printf("        |◆|******|◆|                                     |◆|******|◆|\n");
-			    printf("        ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆\n");
-			    printf("\n#################################################################################\n");
-			    printf("\n#                                                                               #\n");
-			    printf("\n#################################################################################\n\n");
+				system("cls");
+				if(language==1)
+				{
+				    printf("登录成功！\n");
+				    printf("\n---------------------------------------------------------------------------------\n");
+				    printf("\n|◆                          * 欢迎来到行星银行 *                              ◆|\n");
+				    printf("\n---------------------------------------------------------------------------------\n\n");
+				    printf("        -----------------------------------------------------------------\n");
+				    printf("        |◆                         请选择操作                        ◆|\n");
+				    printf("        |◆                                                           ◆|\n");
+				    printf("        |◆                   ☆ 修改密码    请按 1                   ◆|\n"); 
+				    printf("        |◆                   ☆ 取款业务    请按 2                   ◆|\n");
+				    printf("        |◆                   ☆ 存款业务    请按 3                   ◆|\n");
+				    printf("        |◆                   ☆ 转账业务    请按 4                   ◆|\n");
+				    printf("        |◆                   ☆ 查询交易    请按 5                   ◆|\n");
+				    printf("        |◆                   ☆ 查询信息    请按 6                   ◆|\n");
+				    printf("        |◆                                                           ◆|\n");
+				    printf("        -----------------------------------------------------------------\n");
+				    printf("\n---------------------------------------------------------------------------------\n");
+				    printf("\n|◆                                                                            ◆|\n");
+				    printf("\n---------------------------------------------------------------------------------\n\n");
+				}
+				else if(language==2)
+				{
+				    printf("Login successful！\n");
+				    printf("\n---------------------------------------------------------------------------------\n");
+				    printf("\n|◆                     * Welcome to the Planet Bank *                         ◆|\n");
+				    printf("\n---------------------------------------------------------------------------------\n\n");
+				    printf("        -----------------------------------------------------------------\n");
+				    printf("        |◆                  Please select the action                 ◆|\n");
+				    printf("        |◆                                                           ◆|\n");
+				    printf("        |◆              ☆ Change password      Press 1              ◆|\n"); 
+				    printf("        |◆              ☆ Draw money           Press 2              ◆|\n");
+				    printf("        |◆              ☆ Save money           Press 3              ◆|\n");
+				    printf("        |◆              ☆ Transfer money       Press 4              ◆|\n");
+				    printf("        |◆              ☆ Transaction records  Press 5              ◆|\n");
+				    printf("        |◆              ☆ personal information Press 6              ◆|\n");
+				    printf("        |◆                                                           ◆|\n");
+				    printf("        -----------------------------------------------------------------\n");
+				    printf("\n---------------------------------------------------------------------------------\n");
+				    printf("\n|◆                                                                            ◆|\n");
+				    printf("\n---------------------------------------------------------------------------------\n\n");
+				}
+				int x;
+				if(language==1)
+				{
+					printf("请输入你的选择（如果想要退出此账户请按其他）：");
+				}
+				else if(language==2)
+				{
+					printf("Please enter your choice(Press other options if you want to exit this account)：");
+				} 
+				scanf("%d",&x);
+				switch(x)
+				{
+					case 1:updatePassword();break;
+					case 2:drawMoney();break;
+					case 3:saveMoney();break;				
+					case 4:transfer();break;
+					case 5:printTransaction(a.username);break;
+					case 6:printCurAccount(a.username);break;
+					default:return; 
+				}
 			}
-			else if(language==2)
-			{
-			    printf("Login successful！\n");
-			    printf("\n#################################################################################\n");
-			    printf("\n#                       * Welcome to the Planet Bank *                          #\n");
-			    printf("\n#################################################################################\n\n");
-			    printf("        ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆\n");
-			    printf("        |◆|******|◆|       Please select the action      |◆|******|◆|\n");
-			    printf("        |◆|******|◆|                                     |◆|******|◆|\n");
-			    printf("        |◆|******|◆|   ☆ Change password      Press 1   |◆|******|◆|\n"); 
-			    printf("        |◆|******|◆|   ☆ Draw money           Press 2   |◆|******|◆|\n");
-			    printf("        |◆|******|◆|   ☆ Save money           Press 3   |◆|******|◆|\n");
-			    printf("        |◆|******|◆|   ☆ Transfer money       Press 4   |◆|******|◆|\n");
-			    printf("        |◆|******|◆|   ☆ Transaction records  Press 5   |◆|******|◆|\n");
-			    printf("        |◆|******|◆|   ☆ personal information Press 6   |◆|******|◆|\n");
-			    printf("        |◆|******|◆|                                     |◆|******|◆|\n");
-			    printf("        ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆\n");
-			    printf("\n#################################################################################\n");
-			    printf("\n#                                                                               #\n");
-			    printf("\n#################################################################################\n\n");
-			}
-			int x;
-			if(language==1)
-			{
-				printf("请输入你的选择：");
-			}
-			else if(language==2)
-			{
-				printf("Please enter your choice：");
-			} 
-			scanf("%d",&x);
-			switch(x)
-			{
-				case 1:updatePassword();break;
-				case 2:drawMoney();break;
-				case 3:saveMoney();break;				
-				case 4:transfer();break;
-				case 5:printTransaction(a.username);break;
-				case 6:printCurAccount(a.username);break;
-				default:break;
-			}
-			return; 
 		}
 		else
 		{
@@ -764,37 +776,37 @@ void showMenu()
 		system("cls");
 		if(language==1)
 		{
-		    printf("\n#################################################################################\n");
-		    printf("\n#                              * 欢迎来到行星银行 *                             #\n");
-		    printf("\n#################################################################################\n\n");
-		    printf("        ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆\n");
-		    printf("        |◆|******|◆|               请选择操作            |◆|******|◆|\n");
-		    printf("        |◆|******|◆|                                     |◆|******|◆|\n");
-		    printf("        |◆|******|◆|           ☆ 开户    请按 1         |◆|******|◆|\n"); 
-		    printf("        |◆|******|◆|           ☆ 登录    请按 2         |◆|******|◆|\n");
-		    printf("        |◆|******|◆|           ☆ 退出    请按 3         |◆|******|◆|\n");
-		    printf("        |◆|******|◆|                                     |◆|******|◆|\n");
-		    printf("        ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆\n");
-		    printf("\n#################################################################################\n");
-		    printf("\n#                                                                               #\n");
-		    printf("\n#################################################################################\n\n");
+		    printf("\n---------------------------------------------------------------------------------\n");
+		    printf("\n|◆                           * 欢迎来到行星银行 *                             ◆|\n");
+		    printf("\n---------------------------------------------------------------------------------\n\n");
+		    printf("        -----------------------------------------------------------------\n");
+		    printf("        |◆                          请选择操作                       ◆|\n");
+		    printf("        |◆                                                           ◆|\n");
+		    printf("        |◆                      ☆ 开户    请按 1                    ◆|\n"); 
+		    printf("        |◆                      ☆ 登录    请按 2                    ◆|\n");
+		    printf("        |◆                      ☆ 退出    请按 3                    ◆|\n");
+		    printf("        |◆                                                           ◆|\n");
+		    printf("        -----------------------------------------------------------------\n");
+		    printf("\n---------------------------------------------------------------------------------\n");
+		    printf("\n|◆                                                                            ◆|\n");
+		    printf("\n---------------------------------------------------------------------------------\n\n");
 		}
 		else if(language==2)
 		{
-		    printf("\n#################################################################################\n");
-		    printf("\n#                        * Welcome to the Planet Bank *                         #\n");
-		    printf("\n#################################################################################\n\n");
-		    printf("        ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆\n");
-		    printf("        |◆|******|◆|        Please select the action     |◆|******|◆|\n");
-		    printf("        |◆|******|◆|                                     |◆|******|◆|\n");
-		    printf("        |◆|******|◆|         ☆ sign up    Press 1       |◆|******|◆|\n"); 
-		    printf("        |◆|******|◆|         ☆ sign in    Press 2       |◆|******|◆|\n");
-		    printf("        |◆|******|◆|         ☆ sign out   Press 3       |◆|******|◆|\n");
-		    printf("        |◆|******|◆|                                     |◆|******|◆|\n");
-		    printf("        ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆\n");
-		    printf("\n#################################################################################\n");
-		    printf("\n#                                                                               #\n");
-		    printf("\n#################################################################################\n\n");
+		    printf("\n---------------------------------------------------------------------------------\n");
+		    printf("\n|◆                      * Welcome to the Planet Bank *                        ◆|\n");
+		    printf("\n---------------------------------------------------------------------------------\n\n");
+		    printf("        -----------------------------------------------------------------\n");
+		    printf("        |◆                   Please select the action                ◆|\n");
+		    printf("        |◆                                                           ◆|\n");
+		    printf("        |◆                    ☆ sign up    Press 1                  ◆|\n"); 
+		    printf("        |◆                    ☆ sign in    Press 2                  ◆|\n");
+		    printf("        |◆                    ☆ sign out   Press 3                  ◆|\n");
+		    printf("        |◆                                                           ◆|\n");
+		    printf("        -----------------------------------------------------------------\n");
+		    printf("\n---------------------------------------------------------------------------------\n");
+		    printf("\n|◆                                                                            ◆|\n");
+		    printf("\n---------------------------------------------------------------------------------\n\n");
 		}
 		int n;
 		if(language==1)
@@ -845,23 +857,23 @@ void printAllTransaction()
 
 int main()
 {
-	printf("\n#################################################################################\n");
-	printf("\n#                             * 欢迎来到行星银行 *                              #\n");
-	printf("\n#                        * Welcome to the Planet Bank *                         #\n");
-	printf("\n#################################################################################\n\n");
-	printf("        ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆\n");
-	printf("        |◆|******|◆|             请选择语言              |◆|******|◆|\n");
-	printf("        |◆|******|◆|                                     |◆|******|◆|\n");
-	printf("        |◆|******|◆|       ☆ 中文服务    请按 1         |◆|******|◆|\n"); 
-	printf("        |◆|******|◆|       ☆ 英文服务    请按 2         |◆|******|◆|\n");
-	printf("        |◆|******|◆|                                     |◆|******|◆|\n");
-	printf("        ◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆◆\n");
-	printf("\n#################################################################################\n");
-	printf("\n#                                                                               #\n");
-	printf("\n#################################################################################\n\n");
+	printf("\n---------------------------------------------------------------------------------\n");
+	printf("\n|◆                           * 欢迎来到行星银行 *                            ◆|\n");
+	printf("\n|◆                      * Welcome to the Planet Bank *                       ◆|\n");
+	printf("\n---------------------------------------------------------------------------------\n\n");
+	printf("        -----------------------------------------------------------------\n");
+	printf("        |◆                         请选择语言                        ◆|\n");
+	printf("        |◆                                                           ◆|\n");
+	printf("        |◆                   ☆ 中文服务    请按 1                   ◆|\n"); 
+	printf("        |◆                   ☆ 英文服务    请按 2                   ◆|\n");
+	printf("        |◆                                                           ◆|\n");
+	printf("        -----------------------------------------------------------------\n");
+	printf("\n---------------------------------------------------------------------------------\n");
+	printf("\n|◆                                                                            ◆|\n");
+	printf("\n---------------------------------------------------------------------------------\n\n");
 	printf("请输入你的选择："); 
 	scanf("%d",&language);
-	
+	   
 	loadData();
 	loadTransaction();
 	showMenu();
