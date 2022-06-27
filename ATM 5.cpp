@@ -120,10 +120,6 @@ void loadTransaction()
 				tTail->next=newNode;
 				tTail=newNode;
 			}
-			if(feof(fp))
-			{
-				break;
-			} 
 		}
 		if(language==1)
 		{
@@ -590,7 +586,7 @@ void printTransaction(char curUnsername[])
 	{
 		if(strcmp(curP->username,curUnsername)==0)
 		{
-			printf("%s %s %c %f\n",curP->username,curP->nowtime,curP->type,curP->amount);
+			printf("%s\t%s %s\t%c%f\n",curP->username,curP->nowdaytime,curP->nowtime,curP->type,curP->amount);
 			order++; 
 		}
 		curP=curP->next;
@@ -833,28 +829,6 @@ void showMenu()
 	}
 }
 
-//打印所有用户信息
-void printLinkedList() 
-{
-	Account * curP=head;
-	while(curP!=NULL)
-	{
-		printf("%s\t%s\t%s\t%s\t%s\t%f\n",curP->name,curP->idCard,curP->tel,curP->username,curP->password,curP->money);
-		curP=curP->next;
-	}
-}
-
-//打印所有用户交易信息
-void printAllTransaction() 
-{
-    Transaction * curP=tHead;
-	while(curP!=NULL)
-	{
-		printf("%s\t%s %s\t%c%f\n",curP->username,curP->nowdaytime,curP->nowtime,curP->type,curP->amount);
-		curP=curP->next;
-	}
-} 
-
 int main()
 {
 	printf("\n---------------------------------------------------------------------------------\n");
@@ -879,8 +853,6 @@ int main()
 	showMenu();
 	saveData();
 	saveTransaction();
-	printLinkedList();
-	printAllTransaction(); 
 	
 	return 0;	
 }
